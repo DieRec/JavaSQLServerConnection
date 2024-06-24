@@ -11,24 +11,12 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException {
 
 
-        String username = "orion";
-        String password = "orion";
+        String username = "user";
+        String password = "password";
         String database = "databaseLaboop";
         String ip = "localhost";
         String portNumber = "1433";
 
-//        String url = "jdbc:sqlserver://serverName\\instanceName:portNumber;databaseName=yourDatabase";
-//        String url3 = "jdbc:sqlserver://serverName\\instanceName:portNumber;databaseName=yourDatabase;integratedSecurity=true;encrypt=false;";
-//        String url2 = "jdbc:sqlserver://"+ip+":"+portNumber+"/"+database;
-//
-//        String urlExample1 = "jdbc:sqlserver://localhost:1433/databaseLaboop";
-//        String urlExample0 = "jdbc:sqlserver://serverName\\instanceName:portNumber;databaseName=yourDatabase;integratedSecurity=true;encrypt=false;";
-//
-//        String urlExample2 = "jdbc:sqlserver://NINA\\localhost;databaseName=databaseLaboop;integratedSecurity=true;encrypt=false;";
-//        String urlExample3 = "jdbc:sqlserver://NINA\\SQLEXPRESS:1433;databaseName=databaseLaboop;integratedSecurity=true;encrypt=false;";
-//        String urlExample4 = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=databaseLaboop;integratedSecurity=true;encrypt=false;";
-//
-//        String URL = "jdbc:sqlserver://localhost:1433;databaseName=databaseLaboop;integratedSecurity=true;encrypt=false";
 
         /*URL actually worked*/
         //--> private static final String URL2 = "jdbc:sqlserver://localhost:1433;databaseName=databaseLaboop;integratedSecurity=true;encrypt=false";
@@ -159,34 +147,6 @@ public class Main {
         }
     }
 
-    private static void Insertar(String url, String username, String password, String nombre, int id, int edad, String universidad) {
-        // La URL sigue el siguiente formato:
-        // <driver>:<gestor de BD>://<servidor>:<puerto>/<nombre de la BD>
-        try {
-
-            // Paso 1: Registrar el controlador JDBC
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            Connection conn = DriverManager.getConnection(url, username, password);
-
-            PreparedStatement st = conn.prepareStatement("INSERT INTO estudiante VALUES(?,?,?,?)");
-            st.setString(1, nombre);
-            st.setInt(2, id);
-            st.setInt(3,edad);
-            st.setString(4, universidad);
-
-            try{
-                int results = st.executeUpdate();
-                System.out.println(results+" fila(s) afectada(s)");
-            } catch (SQLException e){
-                System.out.println("valor duplicado");
-            }
-
-            conn.close();
-        } catch (Exception e) {
-            System.out.println("Fallo al conectar la Base de Datos");
-        }
-    }
 
     private static void modificarUniversidad(String url, String username, String password,String estudiante, String modificar) {
         // La URL sigue el siguiente formato:
